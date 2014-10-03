@@ -7,7 +7,7 @@ Inside it uses EventMachine to handle the multiple actions dispatching.
 
 ## Usage
 Put a valid twitter OAuth credentials inside the `config.yml` file.
-`` `
+```
 oauth:
     :consumer_key: [consumer key]
     :consumer_secret: [consumer secret]

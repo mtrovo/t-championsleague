@@ -1,5 +1,6 @@
 window_period: 1m
 top_retweets: 10
+refresh_time: 1s
 oauth:
     :consumer_key: YMfCYzJUVVMJIgV5W4peGmGwb
     :consumer_secret: SHmcS8gyBcefsXkEEMh37csIYtz6KRKe9j0rMwDZXW5ZjSlcsH

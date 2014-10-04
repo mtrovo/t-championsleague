@@ -2,8 +2,14 @@ window_period: 1m
 top_retweets: 10
 refresh_time: 1s
 oauth:
-    :consumer_key: consumer key
-    :consumer_secret: consumer secret
-    :token: access token
-    :token_secret: access token secret
+    :consumer_key: LuYBRsTGTtZVY36wkwbmucqhC
+    :consumer_secret: IXo5fVMDcZ2a7mHExP6Jd5AaaS2XxTZmPy3WkJM0ZJb11K9J5V
+    :token: 14226885-l2XSi4eHVkTHrzlkyRwGXyrv0xthvB972Tc1JCksL
+    :token_secret: ZBh74T4D5o205b3mCjwdpa7jM1QGQHA2ZQDFm6eTcFHwl
 
+server:
+    :impl: thin
+    :host: 0.0.0.0
+    :port: 8181
+
+gui: web

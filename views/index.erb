@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Top retweets</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300' rel='stylesheet' type='text/css'>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<style>
+/* narrower container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+  .tweet {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.3em;
+    font-weight: 300;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin: 2px 0;
+    padding: 10px;
+
+  }
+  .header {
+    margin-bottom: 30px;
+  }
+  .rtnum {
+    font-weight: 500;
+  }
+}
+
+</style>
+</head>
+<body>
+	
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="https://github.com/mtrovo/t-championsleague">Fork on github</a></li>
+        </ul>
+        <h3 class="text-muted">UEFA Champions League tracker</h3>
+      </div>
+
+
+      <% for rt in tops %>
+      <div class="row tweet">
+        <span class="col-md-1">
+          <img src="<%= rt[:user][:profile_image_url]%>" alt="<%= rt[:user][:screen_name]%>" title="<%= rt[:user][:screen_name]%>">
+        </span>
+        <div class="col-md-11">
+          <a href="https://twitter.com/<%= rt[:user][:screen_name]%>">@<%=rt[:user][:screen_name]%></a> 
+          <%= rt[:text]%>
+          <br>
+          <span class="pull-right rtnum"><%= rt[:retweet_count] %> retweets</span>
+        </div> 
+      </div>
+      <% end %>
+    <div class="row">
+      <div class="footer">
+        <p>&copy; mtrovo 2014</p>
+      </div>
+    </div>
+</body>
+</html>

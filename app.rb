@@ -12,7 +12,7 @@ CONFIG = YAML.load_file('config.yml')
 
 OPTIONS = {
 	:path   => '/1.1/statuses/filter.json',
-	:params => { :track => 'BrasilMarina40' },
+	:params => { :track => 'ChampionsLeague' },
 	:oauth  => CONFIG['oauth']
 }
 

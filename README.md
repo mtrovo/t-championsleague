@@ -17,10 +17,22 @@ oauth:
 
 Install all the gems dependencies using:
 ```
-    bundle install
+bundle install
 ```
 
 And run the application using the following command:
 ```
-	ruby app.rb
+ruby app.rb
+```
+ 
+This will open a sinatra app on http://localhost:8181/.
+
+Also, if you want to see a console based GUI you can also start the app with the following command.
+```
+ruby app.rb console
+```
+
+Also you can start with the string `both` so you can start both the console and web based gui.
+```
+ruby app.rb both
 ```

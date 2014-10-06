@@ -12,7 +12,7 @@ CONFIG = YAML.load_file('config.yml')
 
 OPTIONS = {
 	:path   => '/1.1/statuses/filter.json',
-	:params => { :track => 'championsleague' },
+	:params => { :track => 'BrasilMarina40' },
 	:oauth  => CONFIG['oauth']
 }
 
@@ -31,7 +31,7 @@ end
 def run! options
 	time_window_ms = ChronicDuration.parse(CONFIG['window_period']) * 1000
 	aggr = RTAggregator.new
-	sinatra = RTAggregatorApp.new aggr, page: CONFIG['top_retweets']
+	sinatra = RTAggregatorApp.new aggr, page: CONFIG['top_retweets'], time_window: time_window_ms
 
 	EM.run do
 		# configure and start web based GUI
@@ -117,6 +117,10 @@ def run! options
 			exit 1
 		end
 	end
+end
+
+if ARGV.size == 1
+	CONFIG['gui'] = ARGV[0]
 end
 
 run!(OPTIONS) if __FILE__==$0

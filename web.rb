@@ -1,15 +1,16 @@
 require 'sinatra/base'
-require 'sinatra/handlebars'
 require 'thin'
 
 
 class RTAggregatorApp < Sinatra::Base
-  helpers Sinatra::Handlebars
+
+  attr_accessor :aggregator
 
   def initialize aggregator, config
     super()
     @aggregator = aggregator
     @page = config[:page]
+    @time_window = config[:time_window]
   end
 
   configure do
@@ -17,6 +18,7 @@ class RTAggregatorApp < Sinatra::Base
   end
 
   get '/' do
+    @aggregator.delete_older_than @time_window
     tops = @aggregator.top_retweets @page
     erb :index, locals: {tops: tops}
   end

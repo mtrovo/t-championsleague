@@ -5,9 +5,11 @@ gem 'em-twitter'
 gem 'sinatra'
 gem 'colorize'
 gem 'chronic_duration'
+gem 'thin'
 
 
 group :test do
-  gem 'mockingbird', '>= 0.2'
+  gem 'capybara'
   gem 'rspec', '>= 2.14'
+  gem 'byebug'
 end

@@ -6,8 +6,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300' rel='stylesheet' type='text/css'>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="http://momentjs.com/downloads/moment.min.js"></script>
+
 <style>
-/* narrower container */
 @media (min-width: 768px) {
   .container {
     max-width: 730px;
@@ -28,18 +29,34 @@
   .rtnum {
     font-weight: 500;
   }
-}
 
+  html {
+    position: relative;
+    min-height: 100%;
+  }
+  body {
+    margin-bottom: 80px;
+  }
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    padding-top: 5px;
+    background-color: #333;
+    border-top: 5px solid #5a2a2a;
+  }
+}
 </style>
+
 </head>
 <body>
-	
+	<a href="https://github.com/mtrovo/t-championsleague"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="https://github.com/mtrovo/t-championsleague">Fork on github</a></li>
+          <li><a href="/">Refresh</a></li>
         </ul>
         <h3 class="text-muted">UEFA Champions League tracker</h3>
       </div>
@@ -48,20 +65,31 @@
       <% for rt in tops %>
       <div class="row tweet">
         <span class="col-md-1">
-          <img src="<%= rt[:user][:profile_image_url]%>" alt="<%= rt[:user][:screen_name]%>" title="<%= rt[:user][:screen_name]%>">
+          <img src="<%= rt[:user][:profile_image_url] %>" alt="<%= rt[:user][:screen_name] %>" title="<%= rt[:user][:screen_name] %>">
         </span>
         <div class="col-md-11">
           <a href="https://twitter.com/<%= rt[:user][:screen_name]%>">@<%=rt[:user][:screen_name]%></a> 
-          <%= rt[:text]%>
+          <span class="text"><%= rt[:text]%></span> <span class="small">(posted <time datetime="<%= Time.parse(rt[:created_at]).iso8601 %>" ></time>) </span>
           <br>
-          <span class="pull-right rtnum"><%= rt[:retweet_count] %> retweets</span>
+          <span class="pull-left rtnum small">retweeted last time <time datetime="<%= Time.at(rt[:rt_timestamp]/1000).iso8601 %>" ></time></span>
+          <span class="pull-right rtnum small"><%= rt[:retweet_count] %> retweets</span>
         </div> 
       </div>
       <% end %>
-    <div class="row">
-      <div class="footer">
-        <p>&copy; mtrovo 2014</p>
+    </div>
+
+
+    <div class="footer">
+      <div class="container">
+        <p class="text-muted">&copy; MTROVO 2014</p>
+        <p class="text-muted small">Created with ruby, em-twitter, Sinatra, Bootstrap and Moment.js </p>
       </div>
     </div>
+
+    <script>
+    [].forEach.call(document.querySelectorAll('.tweet time'), function(el) {
+      el.innerHTML = moment(el.getAttribute('datetime')).fromNow();
+    });
+    </script>
 </body>
 </html>

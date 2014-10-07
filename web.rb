@@ -1,12 +1,10 @@
 require 'sinatra/base'
 require 'thin'
 
-
 class RTAggregatorApp < Sinatra::Base
-
   attr_accessor :aggregator
 
-  def initialize aggregator, config
+  def initialize(aggregator, config)
     super()
     @aggregator = aggregator
     @page = config[:page]
@@ -20,6 +18,6 @@ class RTAggregatorApp < Sinatra::Base
   get '/' do
     @aggregator.delete_older_than @time_window
     tops = @aggregator.top_retweets @page
-    erb :index, locals: {tops: tops}
+    erb :index, locals: { tops: tops }
   end
 end

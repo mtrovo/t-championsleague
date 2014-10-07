@@ -7,9 +7,7 @@ gem 'colorize'
 gem 'chronic_duration'
 gem 'thin'
 
-
 group :test do
   gem 'capybara'
   gem 'rspec', '>= 2.14'
-  gem 'byebug'
 end
